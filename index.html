@@ -1,103 +1,131 @@
-html lang="lo">
+<!DOCTYPE html>
+<html lang="lo">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Lao Fruit Shop - ຍິນດີຕ້ອນຮັບ</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
     <style>
-        :root {
-            --bg-main: #0a0e17;
-            --bg-card: #121824;
-            --bg-card-hover: #1a2332;
-            --primary-blue: #3b82f6;
-            --accent-cyan: #06b6d4;
-            --accent-purple: #8b5cf6;
-            --neon-glow: rgba(6, 182, 212, 0.4);
-            --text-light: #f8fafc;
-            --text-dim: #94a3b8;
-            --border-glow: rgba(59, 130, 246, 0.25);
+        * {
+            box-sizing: border-box;
         }
 
         body {
-            font-family: 'Noto Sans Lao', sans-serif;
-            background-color: var(--bg-main);
-            color: var(--text-light);
-            padding-bottom: 90px;
-            overflow-x: hidden;
+            margin: 0;
+            font-family: Arial, "Noto Sans Lao", sans-serif;
+            background: #0a0e17;
+            color: white;
+            padding-bottom: 80px;
         }
 
-        .top-navbar {
-            background: rgba(18, 24, 36, 0.95);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border-glow);
+        .header {
+            padding: 18px;
+            background: #121824;
+            border-bottom: 1px solid #263247;
             position: sticky;
             top: 0;
-            z-index: 1020;
+            z-index: 10;
         }
 
-        .user-avatar-icon {
-            width: 42px;
-            height: 42px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, var(--primary-blue), var(--accent-purple));
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .header-title {
+            font-size: 22px;
             font-weight: bold;
+        }
+
+        .header-subtitle {
+            color: #94a3b8;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 1100px;
+            margin: 20px auto;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #172554, #312e81);
+            border: 1px solid #06b6d4;
+            border-radius: 18px;
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 {
+            margin-top: 0;
+            font-size: 25px;
+        }
+
+        .hero p {
+            color: #cbd5e1;
+            line-height: 1.7;
+        }
+
+        button {
+            border: 0;
+            border-radius: 10px;
+            padding: 11px 16px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .primary {
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
             color: white;
-            box-shadow: 0 0 10px var(--neon-glow);
         }
 
-        .balance-badge {
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid var(--accent-cyan);
-            border-radius: 12px;
-            padding: 6px 14px;
+        .secondary {
+            background: #1e293b;
+            color: white;
+            border: 1px solid #475569;
         }
 
-        .hero-banner {
-            background: linear-gradient(135deg, rgba(59,130,246,0.3), rgba(139,92,246,0.3)), #1e293b;
-            border-radius: 20px;
-            border: 1px solid var(--accent-cyan);
-            box-shadow: 0 0 20px rgba(6, 182, 212, 0.2);
-            padding: 2rem 1.5rem;
+        .section-title {
+            margin: 25px 0 15px;
         }
 
-        .lao-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-glow);
-            border-radius: 16px;
-            transition: all 0.3s ease;
+        .products {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .card {
+            background: #121824;
+            border: 1px solid #263247;
+            border-radius: 15px;
             overflow: hidden;
         }
 
-        .lao-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-cyan);
-            box-shadow: 0 8px 25px rgba(6, 182, 212, 0.25);
-        }
-
-        .product-icon-box {
-            height: 140px;
-            background: linear-gradient(135deg, #0f172a, #1e293b);
+        .product-icon {
+            height: 120px;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
+            font-size: 55px;
+            background: #0f172a;
         }
 
-        .btn-lao-primary {
-            background: linear-gradient(135deg, var(--primary-blue), var(--accent-cyan));
-            border: none;
-            color: white;
-            font-weight: 600;
-            border-radius: 12px;
-            padding: 8px 16px;
+        .card-content {
+            padding: 15px;
+        }
+
+        .card h3 {
+            font-size: 16px;
+            margin: 0 0 10px;
+        }
+
+        .price {
+            color: #22d3ee;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .balance {
+            color: #22d3ee;
+            font-weight: bold;
         }
 
         .bottom-nav {
@@ -105,15 +133,227 @@ html lang="lo">
             bottom: 0;
             left: 0;
             right: 0;
-            height: 70px;
-            background: rgba(18, 24, 36, 0.95);
-            backdrop-filter: blur(15px);
-            border-top: 1px solid var(--border-glow);
+            height: 65px;
+            background: #121824;
+            border-top: 1px solid #263247;
             display: flex;
             justify-content: space-around;
             align-items: center;
-            z-index: 1050;
+            z-index: 20;
         }
 
-        .bottom-nav-item {
-  
+        .nav-button {
+            background: transparent;
+            color: #94a3b8;
+            padding: 8px;
+        }
+
+        .nav-button.active {
+            color: #22d3ee;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .notice {
+            background: #111827;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 15px;
+            color: #cbd5e1;
+            line-height: 1.7;
+        }
+
+        @media (min-width: 700px) {
+            .products {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="header">
+    <div class="header-title">🍎 Lao Fruit Shop</div>
+    <div class="header-subtitle">ຍິນດີຕ້ອນຮັບເຂົ້າສູ່ ລາວຟຸດຊອບ</div>
+</header>
+
+<main class="container">
+
+    <section id="home" class="page active">
+        <div class="hero">
+            <h1>🍇 ຍິນດີຕ້ອນຮັບ Lao Fruit Shop</h1>
+            <p>
+                ຮ້ານຈຳໜ່າຍໄອດີເກມ ແລະ ໄອເທັມ Blox Fruit
+                ສຳລັບການສາທິດເວັບໄຊ.
+            </p>
+            <button class="primary" onclick="showPage('shop')">
+                🛒 ເລືອກຊື້ສິນຄ້າ
+            </button>
+        </div>
+
+        <h2 class="section-title">⭐ ສິນຄ້າຍອດນິຍົມ</h2>
+        <div class="products" id="homeProducts"></div>
+    </section>
+
+    <section id="shop" class="page">
+        <h2 class="section-title">🛍️ ສິນຄ້າ</h2>
+        <div class="products" id="shopProducts"></div>
+    </section>
+
+    <section id="topup" class="page">
+        <h2 class="section-title">💳 ເຕີມເງິນ</h2>
+
+        <div class="notice">
+            <p>ຍອດເງິນປັດຈຸບັນ:
+                <span class="balance" id="balance">0 K</span>
+            </p>
+
+            <p>
+                ນີ້ແມ່ນໜ້າສາທິດ ບໍ່ໄດ້ເຊື່ອມຕໍ່ການຈ່າຍເງິນຈິງ.
+            </p>
+
+            <button class="primary" onclick="demoTopup()">
+                ➕ ເພີ່ມເຄຣດິດທົດສອບ 50,000 K
+            </button>
+        </div>
+    </section>
+
+    <section id="history" class="page">
+        <h2 class="section-title">🧾 ປະຫວັດ</h2>
+        <div class="notice" id="historyText">
+            ຍັງບໍ່ມີປະຫວັດການຊື້.
+        </div>
+    </section>
+
+</main>
+
+<nav class="bottom-nav">
+    <button class="nav-button active" onclick="showPage('home')">
+        🏠<br>ໜ້າຫຼັກ
+    </button>
+
+    <button class="nav-button" onclick="showPage('shop')">
+        🛍️<br>ສິນຄ້າ
+    </button>
+
+    <button class="nav-button" onclick="showPage('topup')">
+        💳<br>ເຕີມເງິນ
+    </button>
+
+    <button class="nav-button" onclick="showPage('history')">
+        🧾<br>ປະຫວັດ
+    </button>
+</nav>
+
+<script>
+    let balance = 0;
+    let history = [];
+
+    const products = [
+        {
+            name: "ດາບຄູ່",
+            price: 12000,
+            icon: "⚔️"
+        },
+        {
+            name: "ໝັດກ໊ອດ",
+            price: 9000,
+            icon: "⚡"
+        },
+        {
+            name: "ຜົນໂມຈິ",
+            price: 15000,
+            icon: "🔥"
+        },
+        {
+            name: "ຜົນມັງກອນ",
+            price: 18000,
+            icon: "🐉"
+        }
+    ];
+
+    function money(number) {
+        return number.toLocaleString() + " K";
+    }
+
+    function updateBalance() {
+        document.getElementById("balance").textContent = money(balance);
+    }
+
+    function createProducts(elementId) {
+        const container = document.getElementById(elementId);
+
+        container.innerHTML = products.map((product, index) => `
+            <div class="card">
+                <div class="product-icon">${product.icon}</div>
+                <div class="card-content">
+                    <h3>${product.name}</h3>
+                    <div class="price">${money(product.price)}</div>
+                    <button class="primary" onclick="buyProduct(${index})">
+                        ຊື້
+                    </button>
+                </div>
+            </div>
+        `).join("");
+    }
+
+    function buyProduct(index) {
+        const product = products[index];
+
+        if (balance < product.price) {
+            alert(
+                "ຍອດເງິນບໍ່ພໍ! ກະລຸນາເຕີມເງິນກ່ອນ."
+            );
+            showPage("topup");
+            return;
+        }
+
+        balance -= product.price;
+        updateBalance();
+
+        history.push("ຊື້ " + product.name + " - " + money(product.price));
+
+        document.getElementById("historyText").innerHTML =
+            history.map(item => "✅ " + item).join("<br>");
+
+        alert("ຊື້ " + product.name + " ສຳເລັດ!");
+    }
+
+    function demoTopup() {
+        balance += 50000;
+        updateBalance();
+
+        alert("ເພີ່ມເຄຣດິດທົດສອບ 50,000 K ສຳເລັດ!");
+    }
+
+    function showPage(pageName) {
+        document.querySelectorAll(".page").forEach(page => {
+            page.classList.remove("active");
+        });
+
+        document.getElementById(pageName).classList.add("active");
+
+        document.querySelectorAll(".nav-button").forEach(button => {
+            button.classList.remove("active");
+        });
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+
+    createProducts("homeProducts");
+    createProducts("shopProducts");
+    updateBalance();
+</script>
+
+</body>
+</html>
