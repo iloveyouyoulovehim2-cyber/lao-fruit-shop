@@ -1,358 +1,1631 @@
 <!DOCTYPE html>
 <html lang="lo">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LAO GAME SHOP</title>
 
-    <title>Lao Fruit Shop - ຍິນດີຕ້ອນຮັບ</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+body{
+  font-family:Arial,"Noto Sans Lao",sans-serif;
+  background:#f3f4f6;
+  color:#222;
+}
 
-        body {
-            margin: 0;
-            font-family: Arial, "Noto Sans Lao", sans-serif;
-            background: #0a0e17;
-            color: white;
-            padding-bottom: 80px;
-        }
+button,input,select{
+  font:inherit;
+}
 
-        .header {
-            padding: 18px;
-            background: #121824;
-            border-bottom: 1px solid #263247;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
+button{
+  cursor:pointer;
+}
 
-        .header-title {
-            font-size: 22px;
-            font-weight: bold;
-        }
+.topbar{
+  background:#700000;
+  color:white;
+  text-align:center;
+  padding:8px;
+  font-size:13px;
+}
 
-        .header-subtitle {
-            color: #94a3b8;
-            font-size: 13px;
-            margin-top: 5px;
-        }
+header{
+  background:#b40000;
+  color:white;
+  position:sticky;
+  top:0;
+  z-index:50;
+}
 
-        .container {
-            width: 92%;
-            max-width: 1100px;
-            margin: 20px auto;
-        }
+.nav{
+  max-width:1200px;
+  margin:auto;
+  padding:14px 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+}
 
-        .hero {
-            background: linear-gradient(135deg, #172554, #312e81);
-            border: 1px solid #06b6d4;
-            border-radius: 18px;
-            padding: 25px;
-            margin-bottom: 25px;
-        }
+.logo{
+  font-size:23px;
+  font-weight:900;
+  white-space:nowrap;
+}
 
-        .hero h1 {
-            margin-top: 0;
-            font-size: 25px;
-        }
+.logo span{
+  color:#ffd43b;
+}
 
-        .hero p {
-            color: #cbd5e1;
-            line-height: 1.7;
-        }
+nav{
+  display:flex;
+  gap:15px;
+}
 
-        button {
-            border: 0;
-            border-radius: 10px;
-            padding: 11px 16px;
-            cursor: pointer;
-            font-weight: bold;
-        }
+nav a{
+  color:white;
+  text-decoration:none;
+  font-weight:bold;
+  font-size:14px;
+}
 
-        .primary {
-            background: linear-gradient(135deg, #3b82f6, #06b6d4);
-            color: white;
-        }
+nav a:hover{
+  color:#ffd43b;
+}
 
-        .secondary {
-            background: #1e293b;
-            color: white;
-            border: 1px solid #475569;
-        }
+.wallet{
+  background:#ffd43b;
+  color:#640000;
+  border:0;
+  padding:10px 14px;
+  border-radius:10px;
+  font-weight:bold;
+}
 
-        .section-title {
-            margin: 25px 0 15px;
-        }
+.hero{
+  background:
+  radial-gradient(circle at 15% 20%,#ff6b6b55,transparent 30%),
+  radial-gradient(circle at 85% 80%,#ffd43b44,transparent 30%),
+  linear-gradient(135deg,#780000,#d71920);
+  color:white;
+  padding:70px 20px;
+}
 
-        .products {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-        }
+.hero-inner{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1.3fr .7fr;
+  gap:30px;
+  align-items:center;
+}
 
-        .card {
-            background: #121824;
-            border: 1px solid #263247;
-            border-radius: 15px;
-            overflow: hidden;
-        }
+.hero h1{
+  font-size:48px;
+  margin-bottom:15px;
+}
 
-        .product-icon {
-            height: 120px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 55px;
-            background: #0f172a;
-        }
+.hero p{
+  font-size:18px;
+  line-height:1.8;
+}
 
-        .card-content {
-            padding: 15px;
-        }
+.hero-actions{
+  margin-top:25px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
 
-        .card h3 {
-            font-size: 16px;
-            margin: 0 0 10px;
-        }
+.btn{
+  border:0;
+  border-radius:10px;
+  padding:13px 20px;
+  font-weight:bold;
+}
 
-        .price {
-            color: #22d3ee;
-            font-weight: bold;
-            margin-bottom: 12px;
-        }
+.btn-yellow{
+  background:#ffd43b;
+  color:#620000;
+}
 
-        .balance {
-            color: #22d3ee;
-            font-weight: bold;
-        }
+.btn-light{
+  background:#ffffff18;
+  color:white;
+  border:1px solid #ffffff55;
+}
 
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 65px;
-            background: #121824;
-            border-top: 1px solid #263247;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            z-index: 20;
-        }
+.hero-card{
+  background:#ffffff18;
+  border:1px solid #ffffff35;
+  border-radius:22px;
+  padding:35px;
+  text-align:center;
+}
 
-        .nav-button {
-            background: transparent;
-            color: #94a3b8;
-            padding: 8px;
-        }
+.hero-card .emoji{
+  font-size:80px;
+}
 
-        .nav-button.active {
-            color: #22d3ee;
-        }
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:40px 18px;
+}
 
-        .page {
-            display: none;
-        }
+.section-title{
+  margin-bottom:20px;
+}
 
-        .page.active {
-            display: block;
-        }
+.section-title h2{
+  color:#950000;
+  font-size:28px;
+}
 
-        .notice {
-            background: #111827;
-            border: 1px solid #334155;
-            border-radius: 12px;
-            padding: 15px;
-            color: #cbd5e1;
-            line-height: 1.7;
-        }
+.section-title p{
+  color:#777;
+  margin-top:5px;
+}
 
-        @media (min-width: 700px) {
-            .products {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-    </style>
+.account{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  margin-bottom:40px;
+}
+
+.panel{
+  background:white;
+  border-radius:16px;
+  padding:25px;
+  box-shadow:0 4px 18px #0001;
+}
+
+.balance{
+  font-size:35px;
+  color:#b40000;
+  font-weight:900;
+  margin:10px 0;
+}
+
+.panel input{
+  width:100%;
+  padding:12px;
+  border:1px solid #ddd;
+  border-radius:9px;
+  margin-bottom:10px;
+}
+
+.panel button{
+  width:100%;
+  background:#b40000;
+  color:white;
+  border:0;
+  padding:12px;
+  border-radius:9px;
+  font-weight:bold;
+}
+
+.categories{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  margin-bottom:22px;
+}
+
+.category{
+  background:white;
+  border:1px solid #ddd;
+  border-radius:10px;
+  padding:10px 14px;
+  font-weight:bold;
+}
+
+.category.active,
+.category:hover{
+  background:#b40000;
+  color:white;
+}
+
+.tools{
+  display:flex;
+  gap:10px;
+  margin-bottom:22px;
+}
+
+.search{
+  flex:1;
+  padding:13px;
+  border:1px solid #ddd;
+  border-radius:10px;
+}
+
+select{
+  padding:13px;
+  border:1px solid #ddd;
+  border-radius:10px;
+  background:white;
+}
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
+
+.product{
+  background:white;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 4px 18px #0001;
+  transition:.2s;
+}
+
+.product:hover{
+  transform:translateY(-4px);
+}
+
+.product-image{
+  height:145px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:60px;
+}
+
+.garden{background:#e8f7df}
+.roblox{background:#e5f1ff}
+.fire{background:#fff0dc}
+.blox{background:#eee7ff}
+.other{background:#fff8d8}
+
+.product-info{
+  padding:16px;
+}
+
+.tag{
+  display:inline-block;
+  background:#ffe7a6;
+  color:#765000;
+  padding:4px 7px;
+  border-radius:6px;
+  font-size:10px;
+  font-weight:bold;
+}
+
+.product h3{
+  margin:9px 0;
+}
+
+.product p{
+  color:#777;
+  font-size:13px;
+  min-height:38px;
+}
+
+.price{
+  color:#b40000;
+  font-size:21px;
+  font-weight:900;
+  margin:12px 0;
+}
+
+.product button{
+  width:100%;
+  border:0;
+  border-radius:9px;
+  padding:11px;
+  background:#b40000;
+  color:white;
+  font-weight:bold;
+}
+
+.promo{
+  margin:45px 0;
+  padding:30px;
+  border-radius:18px;
+  background:linear-gradient(100deg,#a90000,#e3282d);
+  color:white;
+}
+
+.promo h2{
+  margin-bottom:8px;
+}
+
+.steps{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.step{
+  background:white;
+  padding:25px;
+  border-radius:16px;
+  box-shadow:0 4px 16px #0001;
+}
+
+.number{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  background:#b40000;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:bold;
+  margin-bottom:12px;
+}
+
+.form-section{
+  margin-top:45px;
+}
+
+.form{
+  max-width:550px;
+  background:white;
+  padding:25px;
+  border-radius:16px;
+  box-shadow:0 4px 16px #0001;
+}
+
+.form input{
+  width:100%;
+  padding:13px;
+  border:1px solid #ddd;
+  border-radius:9px;
+  margin-bottom:10px;
+}
+
+.form button{
+  width:100%;
+  padding:13px;
+  border:0;
+  border-radius:9px;
+  background:#b40000;
+  color:white;
+  font-weight:bold;
+}
+
+footer{
+  margin-top:50px;
+  background:#650000;
+  color:white;
+  padding:40px 18px;
+}
+
+.footer-grid{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  gap:30px;
+}
+
+footer h3{
+  color:#ffd43b;
+  margin-bottom:10px;
+}
+
+footer p{
+  color:#f0cccc;
+  line-height:1.9;
+  font-size:14px;
+}
+
+.copyright{
+  max-width:1200px;
+  margin:25px auto 0;
+  padding-top:20px;
+  border-top:1px solid #ffffff22;
+  text-align:center;
+  color:#e6baba;
+  font-size:13px;
+}
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#0008;
+  z-index:100;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.modal-box{
+  background:white;
+  width:min(500px,100%);
+  max-height:90vh;
+  overflow:auto;
+  border-radius:18px;
+  padding:25px;
+}
+
+.modal-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.close{
+  width:35px;
+  height:35px;
+  border:0;
+  border-radius:50%;
+}
+
+.cart-row{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  border-bottom:1px solid #eee;
+  padding:12px 0;
+}
+
+.cart-total{
+  display:flex;
+  justify-content:space-between;
+  margin-top:20px;
+  font-size:20px;
+  font-weight:bold;
+}
+
+@media(max-width:900px){
+  .products{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .hero-inner{
+    grid-template-columns:1fr;
+  }
+
+  .account{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:600px){
+  .nav{
+    flex-wrap:wrap;
+  }
+
+  nav{
+    order:3;
+    width:100%;
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+
+  .hero h1{
+    font-size:34px;
+  }
+
+  .hero-card{
+    display:none;
+  }
+
+  .products{
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+
+  .product-image{
+    height:120px;
+  }
+
+  .product-info{
+    padding:11px;
+  }
+
+  .product h3{
+    font-size:14px;
+  }
+
+  .price{
+    font-size:17px;
+  }
+
+  .tools{
+    flex-direction:column;
+  }
+
+  .steps{
+    grid-template-columns:1fr;
+  }
+
+  .footer-grid{
+    grid-template-columns:1fr;
+  }
+}
+</style>
 </head>
 
 <body>
 
-<header class="header">
-    <div class="header-title">🍎 Lao Fruit Shop</div>
-    <div class="header-subtitle">ຍິນດີຕ້ອນຮັບເຂົ້າສູ່ ລາວຟຸດຊອບ</div>
+<div class="topbar">
+🇱🇦 ຍິນດີຕ້ອນຮັບສູ່ LAO GAME SHOP
+</div>
+
+<header>
+<div class="nav">
+
+<div class="logo">
+LAO <span>GAME SHOP</span>
+</div>
+
+<nav>
+<a href="#home">ໜ້າຫຼັກ</a>
+<a href="#shop">ສິນຄ້າ</a>
+<a href="#wallet">ຍອດເງິນ</a>
+<a href="#register">ສະໝັກ</a>
+</nav>
+
+<button class="wallet" onclick="openCart()">
+🛒 ກະຕ່າ <span id="cartCount">0</span>
+</button>
+
+</div>
 </header>
+
+<section class="hero" id="home">
+
+<div class="hero-inner">
+
+<div>
+
+<h1>
+🇱🇦 LAO GAME SHOP
+</h1>
+
+<p>
+ຮ້ານເກມອອນລາຍ
+ລາຄາປະຫຍັດ ມີສິນຄ້າຫຼາຍໝວດ
+ແລະອອກແບບໃຫ້ໃຊ້ງານງ່າຍໃນມືຖື
+</p>
+
+<div class="hero-actions">
+
+<a href="#shop">
+<button class="btn btn-yellow">
+🎮 ເຂົ້າຮ້ານ
+</button>
+</a>
+
+<a href="#register">
+<button class="btn btn-light">
+👤 ສະໝັກສະມາຊິກ
+</button>
+</a>
+
+</div>
+
+</div>
+
+<div class="hero-card">
+
+<div class="emoji">🎮</div>
+
+<h2>ເກມຫຼາຍຫຼາຍ</h2>
+
+<p>
+Grow a Garden 2<br>
+Roblox • Free Fire • Blox Fruits
+</p>
+
+</div>
+
+</div>
+
+</section>
 
 <main class="container">
 
-    <section id="home" class="page active">
-        <div class="hero">
-            <h1>🍇 ຍິນດີຕ້ອນຮັບ Lao Fruit Shop</h1>
-            <p>
-                ຮ້ານຈຳໜ່າຍໄອດີເກມ ແລະ ໄອເທັມ Blox Fruit
-                ສຳລັບການສາທິດເວັບໄຊ.
-            </p>
-            <button class="primary" onclick="showPage('shop')">
-                🛒 ເລືອກຊື້ສິນຄ້າ
-            </button>
-        </div>
+<section id="wallet">
 
-        <h2 class="section-title">⭐ ສິນຄ້າຍອດນິຍົມ</h2>
-        <div class="products" id="homeProducts"></div>
-    </section>
+<div class="section-title">
+<h2>💰 ບັນຊີ ແລະ ຍອດເງິນ</h2>
+<p>ລະບົບຕົວຢ່າງສຳລັບໜ້າເວັບ</p>
+</div>
 
-    <section id="shop" class="page">
-        <h2 class="section-title">🛍️ ສິນຄ້າ</h2>
-        <div class="products" id="shopProducts"></div>
-    </section>
+<div class="account">
 
-    <section id="topup" class="page">
-        <h2 class="section-title">💳 ເຕີມເງິນ</h2>
+<div class="panel">
 
-        <div class="notice">
-            <p>ຍອດເງິນປັດຈຸບັນ:
-                <span class="balance" id="balance">0 K</span>
-            </p>
+<h3>👤 ບັນຊີຂອງຂ້ອຍ</h3>
 
-            <p>
-                ນີ້ແມ່ນໜ້າສາທິດ ບໍ່ໄດ້ເຊື່ອມຕໍ່ການຈ່າຍເງິນຈິງ.
-            </p>
+<p id="userStatus">
+ຍັງບໍ່ໄດ້ເຂົ້າລະບົບ
+</p>
 
-            <button class="primary" onclick="demoTopup()">
-                ➕ ເພີ່ມເຄຣດິດທົດສອບ 50,000 K
-            </button>
-        </div>
-    </section>
+<div class="balance">
+<span id="balance">0</span> ₭
+</div>
 
-    <section id="history" class="page">
-        <h2 class="section-title">🧾 ປະຫວັດ</h2>
-        <div class="notice" id="historyText">
-            ຍັງບໍ່ມີປະຫວັດການຊື້.
-        </div>
-    </section>
+<button onclick="openLogin()">
+ເຂົ້າລະບົບ
+</button>
+
+</div>
+
+<div class="panel">
+
+<h3>💳 ເພີ່ມຍອດເງິນ</h3>
+
+<input
+id="deposit"
+type="number"
+placeholder="ຈຳນວນເງິນ ₭"
+min="1"
+>
+
+<button onclick="depositMoney()">
+ເພີ່ມຍອດເງິນ
+</button>
+
+<p style="margin-top:10px;color:#777;font-size:12px">
+* ໜ້ານີ້ເປັນ Demo ແລະບໍ່ຮັບເງິນຈິງ
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="shop">
+
+<div class="section-title">
+<h2>🛍️ ສິນຄ້າ</h2>
+<p>ສິນຄ້າລາຄາຕົວຢ່າງບໍ່ເກີນ 10,000 ₭</p>
+</div>
+
+<div class="categories">
+
+<button class="category active"
+onclick="filterProducts('all',this)">
+🎮 ທັງໝົດ
+</button>
+
+<button class="category"
+onclick="filterProducts('garden2',this)">
+🌱 Grow a Garden 2
+</button>
+
+<button class="category"
+onclick="filterProducts('garden',this)">
+🌿 Grow a Garden
+</button>
+
+<button class="category"
+onclick="filterProducts('roblox',this)">
+🟦 Roblox
+</button>
+
+<button class="category"
+onclick="filterProducts('freefire',this)">
+🔥 Free Fire
+</button>
+
+<button class="category"
+onclick="filterProducts('blox',this)">
+⚔️ Blox Fruits
+</button>
+
+</div>
+
+<div class="tools">
+
+<input
+class="search"
+id="search"
+placeholder="🔎 ຄົ້ນຫາສິນຄ້າ..."
+oninput="searchProducts()"
+>
+
+<select id="sort" onchange="sortProducts()">
+<option value="default">ຈັດຮຽງ</option>
+<option value="low">ລາຄາຕ່ຳ → ສູງ</option>
+<option value="high">ລາຄາສູງ → ຕ່ຳ</option>
+</select>
+
+</div>
+
+<div class="products" id="products">
+
+<!-- GARDEN 2 -->
+
+<div class="product"
+data-category="garden2"
+data-price="1000"
+data-name="Grow a Garden 2 Basic">
+
+<div class="product-image garden">🌱</div>
+
+<div class="product-info">
+<span class="tag">NEW</span>
+<h3>Grow a Garden 2 Basic</h3>
+<p>ສິນຄ້າຕົວຢ່າງ</p>
+<div class="price">1,000 ₭</div>
+<button onclick="addToCart('Grow a Garden 2 Basic',1000)">
+🛒 ເພີ່ມ
+</button>
+</div>
+
+</div>
+
+<div class="product"
+data-category="garden2"
+data-price="3000"
+data-name="Garden 2 Starter">
+
+<div class="product-image garden">🌳</div>
+
+<div class="product-info">
+<span class="tag">HOT</span>
+<h3>Garden 2 Starter</h3>
+<p>ຊຸດ Starter</p>
+<div class="price">3,000 ₭</div>
+<button onclick="addToCart('Garden 2 Starter',3000)">
+🛒 ເພີ່ມ
+</button>
+</div>
+
+</div>
+
+<div class="product"
+data-category="garden2"
+data-price="5000"
+data-name="Garden 2 Pack">
+
+<div class="product-image garden">🌻</div>
+
+<div class="product-info">
+<h3>Garden 2 Pack</h3>
+<p>ຊຸດສິນຄ້າ</p>
+<div class="price">5,000 ₭</div>
+<button onclick="addToCart('Garden 2 Pack',5000)">
+🛒 ເພີ່ມ
+</button>
+</div>
+
+</div>
+
+<div class="product"
+data-category="garden2"
+data-price="10000"
+data-name="Garden 2 Premium">
+
+<div class="product-image garden">🌺</div>
+
+<div class="product-info">
+<span class="tag">BEST</span>
+<h3>Garden 2 Premium</h3>
+<p>ຊຸດ Premium</p>
+<div class="price">10,000 ₭</div>
+<button onclick="addToCart('Garden 2 Premium',10000)">
+🛒 ເພີ່ມ
+</button>
+</div>
+
+</div>
+
+<!-- GARDEN -->
+
+<div class="product"
+data-category="garden"
+data-price="1000"
+data-name="Garden Seed">
+
+<div class="product-image garden">🌱</div>
+
+<div class="product-info">
+<h3>Garden Seed</h3>
+<p>ແກ່ນພືດ</p>
+<div class="price">1,000 ₭</div>
+<button onclick="addToCart('Garden Seed',1000)">
+🛒 ເພີ່ມ
+</button>
+</div>
+
+</div>
+
+<div class="product"
+data-category="garden"
+data-price="2000"
+data-name="Garden Item">
+
+<div class="product-image garden">🥕</div>
+
+<div class="product-info">
+<h3>Garden Item</h3>
+<p>ສິນຄ້າໃນສວນ</p>
+<div class="price">2,000 ₭</div>
+<button onclick="addToCart('Garden Item',2000)">
+🛒 ເພີ່ມ
+</button>
+</div>
+
+</div>
+
+<div class="product"
+data-category="garden"
+data-price="5000"
+data-name="Garden Flower">
+
+<div class="product-image garden">🌷</div>
+
+<div class="product-info">
+<h3>Garden Flower</h3>
+<p>ດອກໄມ້</p>
+<div class="price">5,000 ₭</div>
+<button onclick="addToCart('Garden Flower',5000)">
+🛒 ເພີ່ມ
+</button>
+</div>
+
+</div>
+
+<div class="product"
+data-category="garden"
+data-price="10000"
+data-name="Garden Premium">
+
+<div class="product-image garden">🌴</div>
+
+<div class="product-info">
+<span class="tag">BEST</span>
+<h3>Garden Premium</h3>
+<p>ຊຸດ Premium</p>
+<div class="price">10,000 ₭</div>
+<button onclick="addToCart('Garden Premium',10000)">
+🛒 ເພີ່ມ
+</button>
+</div>
+
+</div>
+
+<!-- ROBLOX -->
+
+<div class="product"
+data-category="roblox"
+data-price="1000"
+data-name="Roblox Basic">
+
+<div class="product-image roblox">🟦</div>
+
+<div class="product-info">
+<h3>Roblox Basic</h3>
+<p>ສິນຄ້າ Roblox</p>
+<div class="price">1,000 ₭</div>
+<button onclick="addToCart('Roblox Basic',1000)">
+🛒 ເພີ່ມ
+</button>
+</div>
+
+</div>
+
+<div class="product"
+data-category="roblox"
+data-price="3000"
+data-name="Roblox Starter">
+
+<div class="product-image roblox">🎮</div>
+
+<div class="product-info">
+<h3>Roblox Starter</h3>
+<p>ຊຸດ Starter</p>
+<div class="price">3,000 ₭</div>
+<button onclick="addToCart('Roblox Starter',3000)">
+🛒 ເພີ່ມ
+</button>
+</div>
+
+</div>
+
+<div class="product"
+data-category="roblox"
+data-price="5000"
+data-name="Roblox Pack">
+
+<div class="product-image roblox">💎</div>
+
+<div class="product-info">
+<h3>Roblox Pack</h3>
+<p>ຊຸດສິນຄ້າ</p>
+<div class="price">5,000 ₭</div>
+<button onclick="addToCart('Roblox Pack',5000)">
+🛒 ເພີ່ມ
+</button>
+</div>
+
+</div>
+
+<div class="product"
+data-category="roblox"
+data-price="10000"
+data-name="Roblox Premium">
+
+<div class="product-image roblox">👑</div>
+
+<div class="product-info">
+<span class="tag">BEST</span>
+<h3>Roblox Premium</h3>
+<p>ຊຸດ Premium</p>
+<div class="price">10,000 ₭</div>
+<button onclick="addToCart('Roblox Premium',10000)">
+🛒 ເພີ່ມ
+</button>
+</div>
+
+</div>
+
+<!-- FREE FIRE -->
+
+<div class="product"
+data-category="freefire"
+data-price="1000"
+data-name="Free Fire Basic">
+
+<div class="product-image fire">🔥</div>
+
+<div class="product-info">
+<h3>Free Fire Basic</h3>
+<p>ສິນຄ້າຕົວຢ່າງ</p>
+<div class="price">1,000 ₭</div>
+<button onclick="addToCart('Free Fire Basic',1000)">
+🛒 ເພີ່ມ
+</button>
+</div>
+
+</div>
+
+<div class="product"
+data-category="freefire"
+data-price="3000"
+data-name="Free Fire Starter">
+
+<div class="product-image fire">🔥</div>
+
+<div class="product-info">
+<h3>Free Fire Starter</h3>
+<p>ຊຸດ Starter</p>
+<div class="price">3,000 ₭</div>
+<button onclick="addToCart('Free Fire Starter',3000)">
+🛒 ເພີ່ມ
+</button>
+</div>
+
+</div>
+
+<div class="product"
+data-category="freefire"
+data-price="5000"
+data-name="Free Fire Pack">
+
+<div class="product-image fire">💎</div>
+
+<div class="product-info">
+<h3>Free Fire Pack</h3>
+<p>ຊຸດສິນຄ້າ</p>
+<div class="price">5,000 ₭</div>
+<button onclick="addToCart('Free Fire Pack',5000)">
+🛒 ເພີ່ມ
+</button>
+</div>
+
+</div>
+
+<div class="product"
+data-category="freefire"
+data-price="10000"
+data-name="Free Fire Premium">
+
+<div class="product-image fire">🏆</div>
+
+<div class="product-info">
+<span class="tag">BEST</span>
+<h3>Free Fire Premium</h3>
+<p>ຊຸດ Premium</p>
+<div class="price">10,000 ₭</div>
+<button onclick="addToCart('Free Fire Premium',10000)">
+🛒 ເພີ່ມ
+</button>
+</div>
+
+</div>
+
+<!-- BLOX -->
+
+<div class="product"
+data-category="blox"
+data-price="1000"
+data-name="Blox Fruits Basic">
+
+<div class="product-image blox">⚔️</div>
+
+<div class="product-info">
+<h3>Blox Fruits Basic</h3>
+<p>ສິນຄ້າຕົວຢ່າງ</p>
+<div class="price">1,000 ₭</div>
+<button onclick="addToCart('Blox Fruits Basic',1000)">
+🛒 ເພີ່ມ
+</button>
+</div>
+
+</div>
+
+<div class="product"
+data-category="blox"
+data-price="3000"
+data-name="Blox Fruit Pack">
+
+<div class="product-image blox">🍎</div>
+
+<div class="product-info">
+<h3>Blox Fruit Pack</h3>
+<p>ຊຸດ Fruit</p>
+<div class="price">3,000 ₭</div>
+<button onclick="addToCart('Blox Fruit Pack',3000)">
+🛒 ເພີ່ມ
+</button>
+</div>
+
+</div>
+
+<div class="product"
+data-category="blox"
+data-price="5000"
+data-name="Blox Battle Pack">
+
+<div class="product-image blox">⚔️</div>
+
+<div class="product-info">
+<h3>Blox Battle Pack</h3>
+<p>ຊຸດ Battle</p>
+<div class="price">5,000 ₭</div>
+<button onclick="addToCart('Blox Battle Pack',5000)">
+🛒 ເພີ່ມ
+</button>
+</div>
+
+</div>
+
+<div class="product"
+data-category="blox"
+data-price="10000"
+data-name="Blox Premium">
+
+<div class="product-image blox">👑</div>
+
+<div class="product-info">
+<span class="tag">BEST</span>
+<h3>Blox Premium</h3>
+<p>ຊຸດ Premium</p>
+<div class="price">10,000 ₭</div>
+<button onclick="addToCart('Blox Premium',10000)">
+🛒 ເພີ່ມ
+</button>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="promo">
+
+<h2>🔥 ໂປຣໂມຊັນຮ້ານ</h2>
+
+<p>
+ສິນຄ້າຕົວຢ່າງລາຄາປະຫຍັດ
+ຕັ້ງແຕ່ 1,000 ₭ ເຖິງ 10,000 ₭
+</p>
+
+</section>
+
+<section>
+
+<div class="section-title">
+<h2>📦 ວິທີສັ່ງຊື້</h2>
+</div>
+
+<div class="steps">
+
+<div class="step">
+<div class="number">1</div>
+<h3>ເລືອກສິນຄ້າ</h3>
+<p>ເລືອກເກມ ແລະ ສິນຄ້າທີ່ຕ້ອງການ</p>
+</div>
+
+<div class="step">
+<div class="number">2</div>
+<h3>ເພີ່ມໃສ່ກະຕ່າ</h3>
+<p>ກວດສອບລາຍການໃນກະຕ່າ</p>
+</div>
+
+<div class="step">
+<div class="number">3</div>
+<h3>ຢືນຢັນຄຳສັ່ງຊື້</h3>
+<p>ສຳລັບເວີຊັນຈິງຈະຕໍ່ລະບົບຊຳລະເງິນພາຍຫຼັງ</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="form-section" id="register">
+
+<div class="section-title">
+<h2>👤 ສະໝັກສະມາຊິກ</h2>
+</div>
+
+<form class="form" onsubmit="register(event)">
+
+<input
+id="registerName"
+required
+placeholder="ຊື່ຜູ້ໃຊ້"
+>
+
+<input
+id="registerEmail"
+type="email"
+required
+placeholder="ອີເມວ"
+>
+
+<input
+id="registerPassword"
+type="password"
+required
+placeholder="ລະຫັດຜ່ານ"
+>
+
+<button>
+ສະໝັກສະມາຊິກ
+</button>
+
+</form>
+
+</section>
 
 </main>
 
-<nav class="bottom-nav">
-    <button class="nav-button active" onclick="showPage('home')">
-        🏠<br>ໜ້າຫຼັກ
-    </button>
+<footer>
 
-    <button class="nav-button" onclick="showPage('shop')">
-        🛍️<br>ສິນຄ້າ
-    </button>
+<div class="footer-grid">
 
-    <button class="nav-button" onclick="showPage('topup')">
-        💳<br>ເຕີມເງິນ
-    </button>
+<div>
+<h3>LAO GAME SHOP</h3>
+<p>🇱🇦 ຮ້ານເກມອອນລາຍ</p>
+<p>ເວັບຕົວຢ່າງສຳລັບການພັດທະນາຮ້ານ</p>
+</div>
 
-    <button class="nav-button" onclick="showPage('history')">
-        🧾<br>ປະຫວັດ
-    </button>
-</nav>
+<div>
+<h3>ເມນູ</h3>
+<p>ໜ້າຫຼັກ</p>
+<p>ສິນຄ້າ</p>
+<p>ຍອດເງິນ</p>
+</div>
+
+<div>
+<h3>ຕິດຕໍ່</h3>
+<p>Facebook: Lao Game Shop</p>
+<p>TikTok: Lao Game Shop</p>
+<p>ຕິດຕໍ່ຮ້ານພາຍຫຼັງ</p>
+</div>
+
+</div>
+
+<div class="copyright">
+© 2026 LAO GAME SHOP
+</div>
+
+</footer>
+
+<!-- CART -->
+
+<div class="modal" id="cartModal">
+
+<div class="modal-box">
+
+<div class="modal-head">
+
+<h2>🛒 ກະຕ່າ</h2>
+
+<button class="close" onclick="closeCart()">✕</button>
+
+</div>
+
+<div id="cartItems">
+<p>ກະຕ່າຍັງວ່າງ</p>
+</div>
+
+<div class="cart-total">
+
+<span>ລວມ</span>
+
+<span>
+<span id="cartTotal">0</span> ₭
+</span>
+
+</div>
+
+<br>
+
+<button
+class="btn"
+style="width:100%;background:#b40000;color:white"
+onclick="checkout()"
+>
+ຢືນຢັນຄຳສັ່ງຊື້
+</button>
+
+</div>
+
+</div>
+
+<!-- LOGIN -->
+
+<div class="modal" id="loginModal">
+
+<div class="modal-box">
+
+<div class="modal-head">
+
+<h2>👤 ເຂົ້າລະບົບ</h2>
+
+<button class="close" onclick="closeLogin()">✕</button>
+
+</div>
+
+<input
+id="loginName"
+placeholder="ຊື່ຜູ້ໃຊ້"
+style="width:100%;padding:13px;border:1px solid #ddd;border-radius:9px"
+>
+
+<br><br>
+
+<button
+class="btn"
+style="width:100%;background:#b40000;color:white"
+onclick="login()"
+>
+ເຂົ້າລະບົບ
+</button>
+
+</div>
+
+</div>
 
 <script>
-    let balance = 0;
-    let history = [];
 
-    const products = [
-        {
-            name: "ດາບຄູ່",
-            price: 12000,
-            icon: "⚔️"
-        },
-        {
-            name: "ໝັດກ໊ອດ",
-            price: 9000,
-            icon: "⚡"
-        },
-        {
-            name: "ຜົນໂມຈິ",
-            price: 15000,
-            icon: "🔥"
-        },
-        {
-            name: "ຜົນມັງກອນ",
-            price: 18000,
-            icon: "🐉"
-        }
-    ];
+let cart=[];
 
-    function money(number) {
-        return number.toLocaleString() + " K";
-    }
+let balance=0;
 
-    function updateBalance() {
-        document.getElementById("balance").textContent = money(balance);
-    }
+let username="";
 
-    function createProducts(elementId) {
-        const container = document.getElementById(elementId);
+function updateBalance(){
 
-        container.innerHTML = products.map((product, index) => `
-            <div class="card">
-                <div class="product-icon">${product.icon}</div>
-                <div class="card-content">
-                    <h3>${product.name}</h3>
-                    <div class="price">${money(product.price)}</div>
-                    <button class="primary" onclick="buyProduct(${index})">
-                        ຊື້
-                    </button>
-                </div>
-            </div>
-        `).join("");
-    }
+document.getElementById("balance")
+.textContent=
+balance.toLocaleString();
 
-    function buyProduct(index) {
-        const product = products[index];
+}
 
-        if (balance < product.price) {
-            alert(
-                "ຍອດເງິນບໍ່ພໍ! ກະລຸນາເຕີມເງິນກ່ອນ."
-            );
-            showPage("topup");
-            return;
-        }
+function depositMoney(){
 
-        balance -= product.price;
-        updateBalance();
+const input=
+document.getElementById("deposit");
 
-        history.push("ຊື້ " + product.name + " - " + money(product.price));
+const amount=
+Number(input.value);
 
-        document.getElementById("historyText").innerHTML =
-            history.map(item => "✅ " + item).join("<br>");
+if(!amount || amount<=0){
 
-        alert("ຊື້ " + product.name + " ສຳເລັດ!");
-    }
+alert("ກະລຸນາໃສ່ຈຳນວນເງິນ");
 
-    function demoTopup() {
-        balance += 50000;
-        updateBalance();
+return;
 
-        alert("ເພີ່ມເຄຣດິດທົດສອບ 50,000 K ສຳເລັດ!");
-    }
+}
 
-    function showPage(pageName) {
-        document.querySelectorAll(".page").forEach(page => {
-            page.classList.remove("active");
-        });
+balance+=amount;
 
-        document.getElementById(pageName).classList.add("active");
+updateBalance();
 
-        document.querySelectorAll(".nav-button").forEach(button => {
-            button.classList.remove("active");
-        });
+input.value="";
 
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-    }
+alert(
+"ເພີ່ມຍອດເງິນ "+amount.toLocaleString()+" ₭ ແລ້ວ"
+);
 
-    createProducts("homeProducts");
-    createProducts("shopProducts");
-    updateBalance();
+}
+
+function addToCart(name,price){
+
+cart.push({
+name:name,
+price:price
+});
+
+updateCart();
+
+alert(
+"ເພີ່ມ "+name+" ແລ້ວ"
+);
+
+}
+
+function updateCart(){
+
+document.getElementById("cartCount")
+.textContent=cart.length;
+
+const box=
+document.getElementById("cartItems");
+
+if(cart.length===0){
+
+box.innerHTML=
+"<p>ກະຕ່າຍັງວ່າງ</p>";
+
+}
+else{
+
+box.innerHTML=
+cart.map((item,index)=>`
+
+<div class="cart-row">
+
+<span>
+${index+1}. ${item.name}
+</span>
+
+<b>
+${item.price.toLocaleString()} ₭
+</b>
+
+</div>
+
+`).join("");
+
+}
+
+const total=
+cart.reduce(
+(sum,item)=>sum+item.price,
+0
+);
+
+document.getElementById("cartTotal")
+.textContent=
+total.toLocaleString();
+
+}
+
+function openCart(){
+
+document.getElementById("cartModal")
+.style.display="flex";
+
+}
+
+function closeCart(){
+
+document.getElementById("cartModal")
+.style.display="none";
+
+}
+
+function checkout(){
+
+if(cart.length===0){
+
+alert("ກະຕ່າຍັງວ່າງ");
+
+return;
+
+}
+
+const total=
+cart.reduce(
+(sum,item)=>sum+item.price,
+0
+);
+
+if(balance<total){
+
+alert(
+"ຍອດເງິນບໍ່ພຽງພໍ\n"+
+"ຍອດປັດຈຸບັນ: "+
+balance.toLocaleString()+" ₭"
+);
+
+return;
+
+}
+
+balance-=total;
+
+updateBalance();
+
+cart=[];
+
+updateCart();
+
+alert(
+"ສັ່ງຊື້ສຳເລັດໃນໂໝດ Demo"
+);
+
+closeCart();
+
+}
+
+function openLogin(){
+
+document.getElementById("loginModal")
+.style.display="flex";
+
+}
+
+function closeLogin(){
+
+document.getElementById("loginModal")
+.style.display="none";
+
+}
+
+function login(){
+
+const name=
+document.getElementById("loginName").value.trim();
+
+if(!name){
+
+alert("ກະລຸນາໃສ່ຊື່");
+
+return;
+
+}
+
+username=name;
+
+document.getElementById("userStatus")
+.textContent=
+"ສະບາຍດີ "+username;
+
+closeLogin();
+
+alert(
+"ເຂົ້າລະບົບແລ້ວ"
+);
+
+}
+
+function register(event){
+
+event.preventDefault();
+
+const name=
+document.getElementById("registerName")
+.value.trim();
+
+username=name;
+
+document.getElementById("userStatus")
+.textContent=
+"ສະບາຍດີ "+username;
+
+alert(
+"ສະໝັກສະມາຊິກສຳເລັດໃນໂໝດ Demo"
+);
+
+}
+
+function filterProducts(category,button){
+
+document
+.querySelectorAll(".category")
+.forEach(
+x=>x.classList.remove("active")
+);
+
+button.classList.add("active");
+
+document
+.querySelectorAll(".product")
+.forEach(card=>{
+
+if(
+category==="all" ||
+card.dataset.category===category
+){
+
+card.style.display="";
+
+}else{
+
+card.style.display="none";
+
+}
+
+});
+
+}
+
+function searchProducts(){
+
+const text=
+document.getElementById("search")
+.value
+.toLowerCase();
+
+document
+.querySelectorAll(".product")
+.forEach(card=>{
+
+const name=
+card.dataset.name
+.toLowerCase();
+
+card.style.display=
+name.includes(text)
+?""
+:"none";
+
+});
+
+}
+
+function sortProducts(){
+
+const list=
+document.getElementById("products");
+
+const cards=
+[...list.querySelectorAll(".product")];
+
+const mode=
+document.getElementById("sort").value;
+
+if(mode==="low"){
+
+cards.sort(
+(a,b)=>
+Number(a.dataset.price)-
+Number(b.dataset.price)
+);
+
+}
+
+if(mode==="high"){
+
+cards.sort(
+(a,b)=>
+Number(b.dataset.price)-
+Number(a.dataset.price)
+);
+
+}
+
+cards.forEach(
+card=>list.appendChild(card)
+);
+
+}
+
+updateBalance();
+
+updateCart();
+
 </script>
 
 </body>
