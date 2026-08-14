@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="lo">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ເຂົ້າສູ່ລະບົບ - NEOPLAY SHOP</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Phetsarath OT', sans-serif, Arial;
+        }
+        body {
+            background-color: #dbeafe;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .login-card {
+            background: #ffffff;
+            width: 100%;
+            max-width: 450px;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        }
+        .title {
+            color: #1e40af;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .subtitle {
+            color: #6b7280;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+        .subtitle a {
+            color: #2563eb;
+            text-decoration: underline;
+        }
+        .form-group {
+            margin-bottom: 18px;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            color: #1f2937;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+        .form-group label span {
+            color: #ef4444;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #93c5fd;
+            border-radius: 12px;
+            background-color: #f0f7ff;
+            font-size: 15px;
+            outline: none;
+        }
+        .form-group input:focus {
+            border-color: #2563eb;
+            background-color: #fff;
+        }
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #374151;
+        }
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        <div class="title">➡️ ເຂົ້າສູ່ລະບົບ</div>
+        <div class="subtitle">
+            ລູກຄ້າຍັງບໍ່ມີບັນຊີ? <a href="#">ສະໝັກສະມາຊິກ</a>
+        </div>
+
+        <form>
+            <div class="form-group">
+                <label>ຊື່ຜູ້ໃຊ້ <span>*</span></label>
+                <input type="text" placeholder="Username">
+            </div>
+
+            <div class="form-group">
+                <label>ລະຫັດຜ່ານ <span>*</span></label>
+                <input type="password" placeholder="***********">
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="remember">
+                <label for="remember">ຢູ່ໃນລະບົບຕະຫຼອດ</label>
+            </div>
+
+            <button type="button" class="btn-submit">ເຂົ້າສູ່ລະບົບ</button>
+        </form>
+    </div>
+
+</body>
+</html>
